@@ -5,13 +5,14 @@ const port = 5000;
 const mongoose = require('mongoose');
 const {Users} = require('./models/Users');
 const bodyParser = require('body-parser');
+const config = require('./config/key')
 
 //application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended:true}));
 //application/json
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb+srv://webzzang79:qwe123@cluster0.rvmye.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+mongoose.connect(config.mongoURI, {
   // useNewUrlParser :true
   // , useUnifiedTopology:true
   // , useCreateIndex:true
@@ -20,7 +21,7 @@ mongoose.connect('mongodb+srv://webzzang79:qwe123@cluster0.rvmye.mongodb.net/myF
   .catch(err => console.log(err));
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello World! ')
 })
 
 app.post('/register', (req, res) => {
